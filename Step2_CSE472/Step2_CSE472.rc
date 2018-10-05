@@ -128,6 +128,8 @@ BEGIN
     BEGIN
         MENUITEM "&Spin",                       ID_STEP_SPIN
         MENUITEM "&Mesh",                       ID_STEP_MESH
+        MENUITEM "&Fish Texture",               ID_STEP_FISHTEXTURE
+        MENUITEM "&Letter J",                   ID_STEP_LETTERJ
     END
 END
 

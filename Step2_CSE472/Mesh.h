@@ -14,6 +14,7 @@ public:
 	virtual ~CMesh(void);
 
 	void Draw();
+	void DrawTexture();
 
 	void AddVertex(const CGrVector &v) { m_vertices.push_back(v); }
 	void AddNormal(const CGrVector &n) { m_normals.push_back(n); }
@@ -23,6 +24,8 @@ public:
 	void AddFlatQuad(int a, int b, int c, int d, int n);
 	void LoadOBJ(const char * filename);
 	void AddQuad(int a, int b, int c, int d);
+	std::vector<CGrVector> GetTextureVertices();
+
 
 private:
 	std::vector<CGrVector> m_vertices;

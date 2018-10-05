@@ -15,13 +15,13 @@
 
 CChildView::CChildView()
 {
+	
 	m_wood.LoadFile(L"textures/plank01.bmp");
 	m_fishTexture.LoadFile(L"models/BLUEGILL.bmp");
 	m_spinAngle = 0;
 	m_spinTimer = 0;
 	m_camera.Set(20, 10, 50, 0, 0, 0, 0, 1, 0);
 	m_scene = -1;
-
 	CreateMesh();
 }
 
@@ -39,6 +39,8 @@ BEGIN_MESSAGE_MAP(CChildView, COpenGLWnd)
 	ON_WM_MOUSEMOVE()
 	ON_WM_RBUTTONDOWN()
 	ON_COMMAND(ID_STEP_MESH, &CChildView::OnStepMesh)
+	ON_COMMAND(ID_STEP_FISHTEXTURE, &CChildView::OnStepFishtexture)
+	ON_COMMAND(ID_STEP_LETTERJ, &CChildView::OnStepLetterj)
 END_MESSAGE_MAP()
 
 
@@ -131,12 +133,37 @@ void CChildView::OnGLDraw(CDC *pDC)
 
 		glPushMatrix();
 		glTranslated(0, 4, 0);
+		
 		//Draw the mesh
 		m_mesh.Draw();
 		glPopMatrix();
-		//m_surface.Draw();
+		
+		m_surface.Draw();
 		m_fish.Draw();
+		
+		glPopMatrix();
+		break;
+	case ID_STEP_FISHTEXTURE:
+		glPushMatrix();
+		glRotated(m_spinAngle / 3, 0, 1, 0);
+
+		glEnable(GL_TEXTURE_2D);
+		glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+		glBindTexture(GL_TEXTURE_2D, m_fishTexture.TexName());
+		m_fish.DrawTexture();
+		glDisable(GL_TEXTURE_2D);
+
+		glPopMatrix();
+		break;
+	case ID_STEP_LETTERJ:
+		glPushMatrix();
+		glRotated(m_spinAngle / 3, 0, 1, 0);
+
+		glEnable(GL_TEXTURE_2D);
+		glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+		glBindTexture(GL_TEXTURE_2D, m_fishTexture.TexName());
 		m_letter.Draw();
+		glDisable(GL_TEXTURE_2D);
 
 		glPopMatrix();
 		break;
@@ -347,7 +374,11 @@ void CChildView::CreateMesh()
 		}
 	}
 
+
+	
 	m_fish.LoadOBJ("models\\fish4.obj");
+	
+	
 
 	//creating the letter J for task
 	m_letter.AddVertex(CGrVector(0, 0, 0, 1));
@@ -360,7 +391,10 @@ void CChildView::CreateMesh()
 	m_letter.AddVertex(CGrVector(2.5, 10, 0, 1));
 	m_letter.AddVertex(CGrVector(2.5, 2.5, 0, 1));
 	m_letter.AddVertex(CGrVector(2.5, 2.5, 0, 1));
-
+	//normal for my letter
+	CGrVector normal(0.,1.,0.);
+	normal.Normalize();
+	m_letter.AddNormal(normal);
 
 	//copy of the letter that will be shifted 15 in the z direction
 	m_letter.AddVertex(CGrVector(0, 0, 15, 1));
@@ -374,6 +408,7 @@ void CChildView::CreateMesh()
 	m_letter.AddVertex(CGrVector(2.5, 2.5, 15, 1));
 	m_letter.AddVertex(CGrVector(2.5, 2.5, 15, 1));
 
+	
 }
 
 //
@@ -393,4 +428,23 @@ void CMesh::AddQuad(int a, int b, int c, int d)
 	AddTriangleVertex(c, c, -1);
 	AddTriangleVertex(d, d, -1);
 }
+
+
+
+
+
+void CChildView::OnStepFishtexture()
+{
+	m_scene = ID_STEP_FISHTEXTURE;
+	Invalidate();
+
+}
+
+
+void CChildView::OnStepLetterj()
+{
+	m_scene = ID_STEP_LETTERJ;
+	Invalidate();
+}
+
 

@@ -25,6 +25,19 @@ void CMesh::Draw()
 	glEnd();
 }
 
+void CMesh::DrawTexture()
+{
+	glBegin(GL_TRIANGLES);
+	for (PTV v = m_triangles.begin(); v != m_triangles.end(); v++)
+	{
+		glNormal3dv(m_normals[v->n]);
+		glVertex3dv(m_vertices[v->v]);
+		glTexCoord2dv(m_tvertices[v->t]);
+
+	}
+	glEnd();
+}
+
 void CMesh::AddTriangleVertex(int v, int n, int t)
 {
 	TV tv;
@@ -101,4 +114,9 @@ void CMesh::LoadOBJ(const char *filename)
 
 	}
 
+}
+
+std::vector<CGrVector> CMesh::GetTextureVertices()
+{
+	return m_tvertices;
 }

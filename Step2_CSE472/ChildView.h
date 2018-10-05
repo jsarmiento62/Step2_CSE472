@@ -48,7 +48,7 @@ private:
 	CMesh m_fish;
 	CGrTexture m_fishTexture;
 	CMesh m_letter;
-
+	std::vector<CGrVector> fishTextureVertices;
 	void Box(GLdouble p_x, GLdouble p_y, GLdouble p_z, const GLdouble *p_color);
 	void CreateMesh();
 
@@ -60,5 +60,8 @@ public:
 	afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnStepMesh();
 	
+	afx_msg void OnStepFishtexture();
+	afx_msg void OnStepLetterj();
+	void LetterJ(GLdouble p_x, GLdouble p_y, GLdouble p_z, const GLdouble * p_color);
 };
 
