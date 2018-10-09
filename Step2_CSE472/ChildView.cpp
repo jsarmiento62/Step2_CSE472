@@ -457,18 +457,108 @@ void CChildView::OnStepLetterj()
 //
 inline void J()
 {
-	glBegin(GL_POINTS);
-		
-	glVertex3d(0., 0.,5.);	
-	glVertex3d(5., 0.,5.);
-	glVertex3d(5., 10.,5.);
-	glVertex3d(10., 10.,5.);
-	glVertex3d(10., 15.,5.);
-	glVertex3d(0., 15.,5.);
-	glVertex3d(0.,10.,5.);
-	glVertex3d(2.5,10,5.);
-	glVertex3d(2.5,2.5,5.);
-	glVertex3d(0.,2.5,5.);
+	glBegin(GL_QUADS);
+	
+	//back part of the letter
+	glVertex3d(0., 0.,5.);	//block 1 A
+	glVertex3d(5., 0.,5.); // block 1 B
+	glVertex3d(5., 2.,5.); //block 1 C
+	glVertex3d(0., 2.,5.); //block 1 D
+
+	glVertex3d(5., 2., 5.);	//block 2 C
+	glVertex3d(5., 8., 5.); // block 2 E
+	glVertex3d(3., 8., 5.); //block 2 F
+	glVertex3d(3., 2., 5.); //block 2 G
+
+	glVertex3d(8., 8., 5.); //block 3 H
+	glVertex3d(8., 10., 5.); // block 3 I
+	glVertex3d(0., 10., 5.); //block 3 J
+	glVertex3d(0., 8., 5.); //block 3 K
+
+	// font part of the letter translated on the z axis
+
+	glVertex3d(0., 0., 7.);	//block 1 A
+	glVertex3d(5., 0., 7.); // block 1 B
+	glVertex3d(5., 2., 7.); //block 1 C
+	glVertex3d(0., 2., 7.); //block 1 D
+
+	glVertex3d(5., 2., 7.);	//block 2 C
+	glVertex3d(5., 8., 7.); // block 2 E
+	glVertex3d(3., 8., 7.); //block 2 F
+	glVertex3d(3., 2., 7.); //block 2 G
+
+	glVertex3d(8., 8., 7.); //block 3 H
+	glVertex3d(8., 10., 7.); // block 3 I
+	glVertex3d(0., 10., 7.); //block 3 J
+	glVertex3d(0., 8., 7.); //block 3 K
+
+	//bottom block
+	glVertex3d(0., 0., 5.);
+	glVertex3d(5., 0., 5.); 
+	glVertex3d(5., 0, 7.);
+	glVertex3d(0., 0., 7.);
+
+
+	//RIGHT SIDE OF THE LETTER BLOCKS
+	
+	//right side view long block
+	glVertex3d(5., 0., 7.);
+	glVertex3d(5., 0., 5.); 
+	glVertex3d(5., 8., 5.);
+	glVertex3d(5., 8., 7.);
+
+	//right side top bottom block
+	glVertex3d(5., 8., 5.);
+	glVertex3d(8., 8., 5.); 
+	glVertex3d(8., 8., 7.);
+	glVertex3d(5., 8., 7.);
+
+	// top block of the right side view
+	glVertex3d(8., 8., 7.);
+	glVertex3d(8., 8., 5.); 
+	glVertex3d(8., 10., 5.); 
+	glVertex3d(8., 10., 7.);
+	
+
+	//top view of the letter
+	glVertex3d(0., 10., 7.);
+	glVertex3d(8., 10., 7.); 
+	glVertex3d(8., 10., 5.);
+	glVertex3d(0., 10., 5.);
+	
+
+	//LEFT SIDES OF THE BLOCK
+
+	//left side view long block
+	glVertex3d(3., 2., 5.); 
+	glVertex3d(3., 2., 7.); 
+	glVertex3d(3., 8., 7.);
+	glVertex3d(3., 8., 5.);
+
+	//left side view little block
+	glVertex3d(0., 0., 5.); 
+	glVertex3d(0., 0., 7.); 
+	glVertex3d(0., 2., 7.);
+	glVertex3d(0., 2., 5.);
+
+	//left side flat block
+	glVertex3d(0., 2., 7.); 
+	glVertex3d(3., 2., 7.); 
+	glVertex3d(3., 2., 5.);
+	glVertex3d(0., 2., 5.);
+
+	//left side under block of the top
+	glVertex3d(0., 8., 5.); 
+	glVertex3d(3., 8., 5.); 
+	glVertex3d(3., 8., 7.);
+	glVertex3d(0., 8., 7.);
+	
+	//left side top little block
+	glVertex3d(0., 8., 5.); 
+	glVertex3d(0., 8., 7.); 
+	glVertex3d(0., 10., 7.);
+	glVertex3d(0., 10., 5.);
+
 
 	glEnd();
 }
@@ -490,7 +580,7 @@ void CChildView::LetterJ()
 	//adding texture to the box
 	glEnable(GL_TEXTURE_2D);
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-	glBindTexture(GL_TEXTURE_2D, m_wood.TexName());
+	glBindTexture(GL_TEXTURE_2D, m_fishTexture.TexName());
 
 	glNormal3d(0., 0., 1.);
 	J(); // Front
