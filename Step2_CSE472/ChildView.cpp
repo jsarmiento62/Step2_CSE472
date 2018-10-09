@@ -162,7 +162,7 @@ void CChildView::OnGLDraw(CDC *pDC)
 		glEnable(GL_TEXTURE_2D);
 		glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 		glBindTexture(GL_TEXTURE_2D, m_fishTexture.TexName());
-		m_letter.Draw();
+		LetterJ();
 		glDisable(GL_TEXTURE_2D);
 
 		glPopMatrix();
@@ -395,6 +395,8 @@ void CChildView::CreateMesh()
 	CGrVector normal(0.,1.,0.);
 	normal.Normalize();
 	m_letter.AddNormal(normal);
+	
+
 
 	//copy of the letter that will be shifted 15 in the z direction
 	m_letter.AddVertex(CGrVector(0, 0, 15, 1));
@@ -448,3 +450,53 @@ void CChildView::OnStepLetterj()
 }
 
 
+//
+//        Name : Quad()
+// Description : Inline function for drawing 
+//               a quadralateral.
+//
+inline void J()
+{
+	glBegin(GL_POINTS);
+		
+	glVertex3d(0., 0.,5.);	
+	glVertex3d(5., 0.,5.);
+	glVertex3d(5., 10.,5.);
+	glVertex3d(10., 10.,5.);
+	glVertex3d(10., 15.,5.);
+	glVertex3d(0., 15.,5.);
+	glVertex3d(0.,10.,5.);
+	glVertex3d(2.5,10,5.);
+	glVertex3d(2.5,2.5,5.);
+	glVertex3d(0.,2.5,5.);
+
+	glEnd();
+}
+
+//
+//        Name : CChildView::Box()
+// Description : Draw an arbitrary size box. p_x, 
+//               p_y, an p_z are the height of
+//               the box. We will use this 
+//               as a common primitive.
+//      Origin : The back corner is at 0, 0, 0, and
+//               the box is entirely in the
+//               positive octant.
+//
+void CChildView::LetterJ()
+{
+
+
+	//adding texture to the box
+	glEnable(GL_TEXTURE_2D);
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+	glBindTexture(GL_TEXTURE_2D, m_wood.TexName());
+
+	glNormal3d(0., 0., 1.);
+	J(); // Front
+
+	
+
+	 //diable texturing afterwards to prevent interfering with other parts of the rendering code
+	glDisable(GL_TEXTURE_2D);
+}

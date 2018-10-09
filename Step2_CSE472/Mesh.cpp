@@ -116,7 +116,3 @@ void CMesh::LoadOBJ(const char *filename)
 
 }
 
-std::vector<CGrVector> CMesh::GetTextureVertices()
-{
-	return m_tvertices;
-}

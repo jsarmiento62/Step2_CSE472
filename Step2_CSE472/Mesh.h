@@ -24,7 +24,7 @@ public:
 	void AddFlatQuad(int a, int b, int c, int d, int n);
 	void LoadOBJ(const char * filename);
 	void AddQuad(int a, int b, int c, int d);
-	std::vector<CGrVector> GetTextureVertices();
+
 
 
 private:

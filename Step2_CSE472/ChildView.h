@@ -62,6 +62,6 @@ public:
 	
 	afx_msg void OnStepFishtexture();
 	afx_msg void OnStepLetterj();
-	void LetterJ(GLdouble p_x, GLdouble p_y, GLdouble p_z, const GLdouble * p_color);
+	void LetterJ();
 };
 
