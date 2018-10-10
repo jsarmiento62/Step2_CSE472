@@ -51,6 +51,7 @@ private:
 	std::vector<CGrVector> fishTextureVertices;
 	void Box(GLdouble p_x, GLdouble p_y, GLdouble p_z, const GLdouble *p_color);
 	void CreateMesh();
+	CGrTexture m_edgeTexture;
 
 public:
 	afx_msg void OnStepSpin();
